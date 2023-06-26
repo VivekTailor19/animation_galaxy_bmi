@@ -2,7 +2,9 @@
 
 # animation_galaxy_bmi
 <p>
-  <img src = "" height = "50%" width = "30%">
+    <img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/7b64b8d1-7e13-4ac3-8331-2245cecc1ad1" height = "50%" width = "30%">
+
+
 </p>
 Animation of Galaxy , Simple BMI Calculator
 
