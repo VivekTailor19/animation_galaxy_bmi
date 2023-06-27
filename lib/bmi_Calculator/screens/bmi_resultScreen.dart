@@ -19,7 +19,7 @@ class _BMI_ResultScreenState extends State<BMI_ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(backgroundColor: Colors.deepPurple,
+      child: Scaffold(backgroundColor: Color(0xff000E21),
         body: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
@@ -41,13 +41,13 @@ class _BMI_ResultScreenState extends State<BMI_ResultScreen> {
                   ),
                   Container(height: 60.h,width: 100.w,alignment: Alignment.center,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),
-                    color: Colors.indigo),
+                    color: Color(0xff111F38)),
                     
                     child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text("${bcontrol.bmiData.value}",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 30.sp,color: Colors.green,fontStyle: FontStyle.italic),),
                         Text("${bcontrol.bmiValue.value.toStringAsFixed(0)}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 75.sp,color: Colors.white),),
-                        Text("${bcontrol.bmiData.value}\n skdfjskdfj",style: TextStyle(fontWeight: FontWeight.w300,fontSize: 25.sp,color: Colors.white),),
+                        Text("${bcontrol.bmiData.value}",style: TextStyle(fontWeight: FontWeight.w300,fontSize: 25.sp,color: Colors.white),),
 
                       ],
                     ),

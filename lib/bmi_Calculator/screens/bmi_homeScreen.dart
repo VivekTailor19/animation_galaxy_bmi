@@ -18,17 +18,18 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
   Animation? leftTween;
   Animation? rightTween;
 
-  Animation? centerTween;
+  Animation<Alignment>? centerTween;
 
 
   @override
   void initState() {
     super.initState();
 
-    bmiAniControl = AnimationController(vsync: this, duration: Duration(seconds: 2));
+    bmiAniControl = AnimationController(vsync: this, duration: Duration(seconds: 5));
 
-    leftTween = Tween<Alignment>(begin: Alignment(-500,0),end:Alignment(50,0) ).animate(bmiAniControl!);
-    rightTween = Tween<Alignment>(end: Alignment(-100,0),begin:Alignment(0,0) ).animate(bmiAniControl!);
+    centerTween = Tween<Alignment>(begin: Alignment(30,0),end:Alignment(0,0) ).animate(bmiAniControl!);
+    leftTween = Tween<Alignment>(end: Alignment(40,0),begin:Alignment(0,0) ).animate(bmiAniControl!);
+    rightTween = Tween<Alignment>(end: Alignment(-30,0),begin:Alignment(0,0) ).animate(bmiAniControl!);
 
     bmiAniControl!.forward();
     bmiAniControl!.addListener(() {
@@ -41,7 +42,7 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(backgroundColor: Colors.deepPurple,
+      child: Scaffold(backgroundColor: Color(0xff000E21),
         body: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
@@ -75,7 +76,7 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
                         },
                         child: Container(height: 45.w,width: 45.w,
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Colors.indigo),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Color(0xff111F38)),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -92,7 +93,7 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
 
                         },
                         child: Container(height: 45.w,width: 45.w,alignment: Alignment.center,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Colors.indigo),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Color(0xff111F38)),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -106,25 +107,29 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
                     ],
                   ),
 
-                  Container(height: 28.h,width: 100.w,alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(vertical: 3.w),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Colors.indigo),
-                    child:Column(mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Height",style: TextStyle(fontSize: 15.sp,color: Colors.white,fontWeight: FontWeight.w200),),
-                        Obx(() =>  Text("${bcontrol.height.value.toStringAsFixed(0)} cm",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),)),
-                        Obx(
-                              () =>  Slider(value: bcontrol.height.value,
-                            onChanged: (value) {
-                              bcontrol.changeHeight(value);
-                            },
-                            thumbColor: Color(0xFFEB1555),
-                            activeColor: Colors.pinkAccent,inactiveColor: Colors.white,
-                            max: 350,min: 0,),
-                        )
-                      ],
-                    ),
+                  Align(
+                    alignment: centerTween!.value,
+                    child: Container(height: 28.h,width: 100.w,alignment: Alignment.center,
+                      margin: EdgeInsets.symmetric(vertical: 3.w),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Color(0xff111F38)),
+                      child:Column(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Height",style: TextStyle(fontSize: 22.sp,color: Colors.white,fontWeight: FontWeight.w500),),
+                          SizedBox(height: 1.h,),
+                          Obx(() =>  Text("${bcontrol.height.value.toStringAsFixed(0)} cm",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),)),
+                          Obx(
+                                () =>  Slider(value: bcontrol.height.value,
+                              onChanged: (value) {
+                                bcontrol.changeHeight(value);
+                              },
+                              thumbColor: Color(0xFFEB1555),
+                              activeColor: Colors.pinkAccent,inactiveColor: Colors.white,
+                              max: 350,min: 0,),
+                          )
+                        ],
+                      ),
 
+                    ),
                   ),
 
 
@@ -132,27 +137,28 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(height: 45.w,width: 45.w,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Colors.indigo),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Color(0xff111F38)),
                         alignment: Alignment.center,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text("Weight",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),),
-                            Obx(() => Text("${bcontrol.weight.value}",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w300),)),
+                            Text("Weight",style: TextStyle(fontSize: 22.sp,color: Colors.white,fontWeight: FontWeight.w500),),
                             SizedBox(height: 1.h,),
+                            Obx(() => Text("${bcontrol.weight.value}",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),)),
+                            SizedBox(height: 1.5.h,),
                             Row(mainAxisAlignment:MainAxisAlignment.center,children: [
                               GestureDetector(
                                 onTap: () => bcontrol.increaseWeight(),
-                                child: Container(width:11.w,height: 11.w,alignment: Alignment.center,
-                                  decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.black),
+                                child: Container(width:13.w,height: 13.w,alignment: Alignment.center,
+                                  decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.white12),
                                   child: Icon(Icons.add,size: 20.sp,color: Colors.white,),),
                               ),
                               SizedBox(width: 5.w),
                               GestureDetector(
                                 onTap: () => bcontrol.decreaseWeight(),
-                                child: Container(width:11.w,height: 11.w,alignment: Alignment.center,
-                                  decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.black),
+                                child: Container(width:13.w,height: 13.w,alignment: Alignment.center,
+                                  decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.white12),
                                   child: Icon(Icons.remove,size: 20.sp,color: Colors.white,),),
                               ),
                             ],),
@@ -160,28 +166,29 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
                         ),
                       ),
                       Container(height: 45.w,width: 45.w,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Colors.indigo),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Color(0xff111F38)),
                         alignment: Alignment.center,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text("Age",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),),
-                            Obx(() =>  Text("${bcontrol.age.value}",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w300),)),
+                            Text("Age",style: TextStyle(fontSize: 22.sp,color: Colors.white,fontWeight: FontWeight.w500),),
                             SizedBox(height: 1.h,),
+                            Obx(() =>  Text("${bcontrol.age.value}",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),)),
+                            SizedBox(height: 1.5.h,),
                             Row(mainAxisAlignment:MainAxisAlignment.center,children: [
                               GestureDetector(
                                 onTap: () => bcontrol.increaseAge(),
 
-                                child: Container(width:11.w,height: 11.w,alignment: Alignment.center,
-                                  decoration: BoxDecoration(shape: BoxShape.circle,color: Color(0xFF4C4F5E)),
+                                child: Container(width:13.w,height: 13.w,alignment: Alignment.center,
+                                  decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.white12),
                                   child: Icon(Icons.add,size: 20.sp,color: Colors.white,),),
                               ),
                               SizedBox(width: 5.w),
                               GestureDetector(
                                 onTap: () => bcontrol.decreaseAge(),
-                                child: Container(width:11.w,height: 11.w,alignment: Alignment.center,
-                                  decoration: BoxDecoration(shape: BoxShape.circle,color: Color(0xFF4C4F5E)),
+                                child: Container(width:13.w,height: 13.w,alignment: Alignment.center,
+                                  decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.white12),
                                   child: Icon(Icons.remove,size: 20.sp,color: Colors.white,),),
                               ),
                             ],),

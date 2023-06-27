@@ -13,10 +13,10 @@ class _BMI_SplashScreenState extends State<BMI_SplashScreen> {
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(Duration(seconds: 3),() => Get.toNamed("/bmiHome"),);
+    Future.delayed(Duration(seconds: 2),() => Get.toNamed("/bmiHome"),);
 
     return SafeArea(
-      child: Scaffold(backgroundColor: Colors.indigo,
+      child: Scaffold(backgroundColor: Color(0xff000E21),
 
           body: Center(
             child: Column(
