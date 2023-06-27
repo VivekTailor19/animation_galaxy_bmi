@@ -15,10 +15,11 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
   BMI_Controller bcontrol = Get.put(BMI_Controller());
 
   AnimationController? bmiAniControl;
+
   Animation? leftTween;
   Animation? rightTween;
 
-  Animation<Alignment>? centerTween;
+  Animation? centerTween;
 
 
   @override
@@ -27,7 +28,7 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
 
     bmiAniControl = AnimationController(vsync: this, duration: Duration(seconds: 5));
 
-    centerTween = Tween<Alignment>(begin: Alignment(30,0),end:Alignment(0,0) ).animate(bmiAniControl!);
+    centerTween = Tween<double>(begin: 0.0,end:1.0 ).animate(bmiAniControl!);
     leftTween = Tween<Alignment>(end: Alignment(40,0),begin:Alignment(0,0) ).animate(bmiAniControl!);
     rightTween = Tween<Alignment>(end: Alignment(-30,0),begin:Alignment(0,0) ).animate(bmiAniControl!);
 
@@ -107,29 +108,26 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
                     ],
                   ),
 
-                  Align(
-                    alignment: centerTween!.value,
-                    child: Container(height: 28.h,width: 100.w,alignment: Alignment.center,
-                      margin: EdgeInsets.symmetric(vertical: 3.w),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Color(0xff111F38)),
-                      child:Column(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Height",style: TextStyle(fontSize: 22.sp,color: Colors.white,fontWeight: FontWeight.w500),),
-                          SizedBox(height: 1.h,),
-                          Obx(() =>  Text("${bcontrol.height.value.toStringAsFixed(0)} cm",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),)),
-                          Obx(
-                                () =>  Slider(value: bcontrol.height.value,
-                              onChanged: (value) {
-                                bcontrol.changeHeight(value);
-                              },
-                              thumbColor: Color(0xFFEB1555),
-                              activeColor: Colors.pinkAccent,inactiveColor: Colors.white,
-                              max: 350,min: 0,),
-                          )
-                        ],
-                      ),
-
+                  Container(height: 28.h,width: 100.w,alignment: Alignment.center,
+                    margin: EdgeInsets.symmetric(vertical: 3.w),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(3.w),color: Color(0xff111F38)),
+                    child:Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Height",style: TextStyle(fontSize: 22.sp,color: Colors.white,fontWeight: FontWeight.w500),),
+                        SizedBox(height: 1.h,),
+                        Obx(() =>  Text("${bcontrol.height.value.toStringAsFixed(0)} cm",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),)),
+                        Obx(
+                              () =>  Slider(value: bcontrol.height.value,
+                            onChanged: (value) {
+                              bcontrol.changeHeight(value);
+                            },
+                            thumbColor: Color(0xFFEB1555),
+                            activeColor: Colors.pinkAccent,inactiveColor: Colors.white,
+                            max: 350,min: 0,),
+                        )
+                      ],
                     ),
+
                   ),
 
 
