@@ -62,7 +62,15 @@ class _BMI_ResultScreenState extends State<BMI_ResultScreen> {
 
 
             GestureDetector(
-              onTap: () => Get.toNamed('/bmiHome'),
+
+              onTap: () {
+                bcontrol.male.value = false;
+                bcontrol.female.value = false;
+                bcontrol.weight.value = 0;
+                bcontrol.height.value = 0;
+                bcontrol.age.value = 0;
+                Get.toNamed('/bmiHome');
+              },
               child: Container(
                   height: 8.h,
                   width: 100.w,

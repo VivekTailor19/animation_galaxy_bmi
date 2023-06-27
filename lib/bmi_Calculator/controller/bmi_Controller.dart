@@ -1,29 +1,41 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BMI_Controller extends GetxController
 {
-  RxInt weight = 40.obs;
-  RxInt age = 10.obs;
-  RxDouble height = 100.0.obs;
+  RxInt weight = 0.obs;
+  RxInt age = 0.obs;
+  RxDouble height = 0.0.obs;
 
-  Rx<Color> male = Colors.pink.obs;
-  Rx<Color> female = Colors.white.obs;
+  RxBool male = false.obs;
+  RxBool female = false.obs;
 
 
   void clickedGender(String gender)
   {
-    Color unselected = Colors.white;
-    Color selected = Colors.pinkAccent;
+
     if(gender=="Male")
       {
-        male.value = selected;
-        female.value = unselected;
+        if(male.value == true)
+          {
+            male.value = false;
+          }
+        else{
+          male.value = true;
+          female.value = false;
+        }
+
       }
     else
       {
-        male.value = unselected;
-        female.value = selected;
+        if(female.value == true)
+        {
+          female.value = false;
+        }
+        else{
+          female.value = true;
+          male.value = false;
+        }
+
       }
   }
 
@@ -39,7 +51,11 @@ class BMI_Controller extends GetxController
 
   void decreaseWeight()
   {
-    weight.value --;
+    if(weight.value>=1)
+      {
+        weight.value --;
+      }
+
   }
 
   void increaseAge()
@@ -49,7 +65,11 @@ class BMI_Controller extends GetxController
 
   void decreaseAge()
   {
-    age.value --;
+    if(age.value >=1)
+      {
+        age.value --;
+      }
+
   }
 
 
@@ -88,6 +108,8 @@ class BMI_Controller extends GetxController
     print(bmiData);
 
   }
+
+
 
 
 }

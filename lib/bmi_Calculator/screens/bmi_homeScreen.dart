@@ -10,9 +10,31 @@ class BMI_HomeScreen extends StatefulWidget {
   State<BMI_HomeScreen> createState() => _BMI_HomeScreenState();
 }
 
-class _BMI_HomeScreenState extends State<BMI_HomeScreen> {
+class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProviderStateMixin {
 
   BMI_Controller bcontrol = Get.put(BMI_Controller());
+
+  AnimationController? bmiAniControl;
+  Animation? leftTween;
+  Animation? rightTween;
+
+  Animation? centerTween;
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    bmiAniControl = AnimationController(vsync: this, duration: Duration(seconds: 2));
+
+    leftTween = Tween<Alignment>(begin: Alignment(-500,0),end:Alignment(50,0) ).animate(bmiAniControl!);
+    rightTween = Tween<Alignment>(end: Alignment(-100,0),begin:Alignment(0,0) ).animate(bmiAniControl!);
+
+    bmiAniControl!.forward();
+    bmiAniControl!.addListener(() {
+      setState((){});
+    });
+  }
 
 
 
@@ -27,7 +49,21 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> {
               child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  Text("BMI Calculator",style:TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 22.sp)),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("BMI Calculator",style:TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 22.sp)),
+                      IconButton(icon: Icon(Icons.refresh_rounded),color: Colors.white, iconSize:20.sp,
+                      onPressed: () {
+
+                        bcontrol.male.value = false;
+                        bcontrol.female.value = false;
+                        bcontrol.weight.value = 0;
+                        bcontrol.height.value = 0;
+                        bcontrol.age.value = 0;
+
+                      },)
+                    ],
+                  ),
                   SizedBox(height: 2.h,),
 
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +79,8 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Obx( () =>  Icon(Icons.male_rounded,size: 50.sp,color: bcontrol.male.value,)),
+                              Obx( () =>  Icon(Icons.male_rounded,size: 50.sp,
+                                color: bcontrol.male.value == true ? Colors.pinkAccent : Colors.white)),
                               Text("Male",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),)
                             ],
                           ),
@@ -59,7 +96,8 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Obx(() => Icon(Icons.female_rounded,size: 50.sp,color: bcontrol.female.value,)),
+                              Obx(() => Icon(Icons.female_rounded,size: 50.sp,
+                                color: bcontrol.female.value == true ? Colors.pinkAccent : Colors.white,)),
                               Text("Female",style: TextStyle(fontSize: 18.sp,color: Colors.white,fontWeight: FontWeight.w400),)
                             ],
                           ),
@@ -82,7 +120,7 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> {
                             },
                             thumbColor: Color(0xFFEB1555),
                             activeColor: Colors.pinkAccent,inactiveColor: Colors.white,
-                            max: 350,min: 45,),
+                            max: 350,min: 0,),
                         )
                       ],
                     ),
@@ -161,8 +199,52 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> {
 
             GestureDetector(
               onTap: ()  {
-                bcontrol.calculateBMI();
-                Get.toNamed("/bmiResult");
+                if(bcontrol.male.value == false && bcontrol.female.value == false)
+                  {
+                    Get.showSnackbar(GetSnackBar(
+                      title: "Note",
+                      message: 'Please Select Gender',
+                      duration: const Duration(seconds: 2),),
+                    );
+                  }
+
+                else if(bcontrol.height.value==0)
+                {
+                  Get.showSnackbar(GetSnackBar(
+                    title: "Note",
+                    message: 'Please Select Height',
+                    duration: const Duration(seconds: 2),),
+                  );
+                }
+
+                else if(bcontrol.weight.value==0)
+                {
+                  Get.showSnackbar(GetSnackBar(
+                    title: "Note",
+                    message: 'Please Select Weight',
+                    duration: const Duration(seconds: 2),),
+                  );
+                }
+
+                else if(bcontrol.age.value==0)
+                {
+                  Get.showSnackbar(GetSnackBar(
+                    title: "Note",
+                    message: 'Select your Age',
+                    duration: const Duration(seconds: 2),),
+                  );
+                }
+
+                else if(
+                (bcontrol.male.value == true || bcontrol.female.value ==true)
+                    && bcontrol.height.value!=0
+                    && bcontrol.weight.value!=0
+                    && bcontrol.age.value!=0)
+                  {
+                    bcontrol.calculateBMI();
+                    Get.toNamed("/bmiResult");
+                  }
+
               },
               child: Container(
                   height: 8.h,

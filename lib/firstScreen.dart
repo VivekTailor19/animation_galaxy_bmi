@@ -19,11 +19,11 @@ class _FirstScreenState extends State<FirstScreen> {
             children: [
               TextButton(onPressed: () {
                 Get.toNamed("/bmi");
-              }, child: Text("BMI Calculator")),
+              }, child: Text("BMI Calculator",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22.sp),)),
               SizedBox(height: 45.h),
               TextButton(onPressed: () {
                 Get.toNamed("/galaxy");
-              }, child: Text("Galaxy")),
+              }, child: Text("Galaxy",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22.sp))),
             ],
           ),
         ),
