@@ -275,6 +275,7 @@ class _BMI_HomeScreenState extends State<BMI_HomeScreen> with SingleTickerProvid
             ),
 
 
+
             GestureDetector(
               onTap: ()  {
                 if(bcontrol.male.value == false && bcontrol.female.value == false)
