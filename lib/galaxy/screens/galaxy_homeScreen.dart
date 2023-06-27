@@ -23,7 +23,6 @@ class _Galaxy_HomeScreenState extends State<Galaxy_HomeScreen> with SingleTicker
 
     gAniController = AnimationController(vsync: this, duration: Duration(seconds: 5));
 
-
     gAniController!.repeat(reverse: false);
     gAniController!.addListener(() {
       setState(() {  });
