@@ -19,11 +19,6 @@ https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/16891c1f-
     <img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/171eae29-2953-445a-b183-19c1ddc1a882" height = "50%" width = "30%">
     <img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/2a3c565e-13ff-4716-8191-ba49babece9c" height = "50%" width = "30%">
 
-
-
-
-
-
 </p>
 
 # Simple BMI Calculator
@@ -31,10 +26,9 @@ https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/2a2e8b7b-
 <p>
 
 <img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/788fa83c-99f9-4c63-a59a-1fd9712c17b8" height = "50%" width = "30%">
+<img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/adfd717a-d2fc-4745-91bc-9ae49f86791d" height = "50%" width = "30%">
 <img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/4b032a2b-b54f-44f6-83c9-11e5b07aeb73" height = "50%" width = "30%">
 <img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/439ce53d-4f87-4cf2-81fb-b4a6dc2ef6d1" height = "50%" width = "30%">
-<img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/adfd717a-d2fc-4745-91bc-9ae49f86791d" height = "50%" width = "30%">
 <img src = "https://github.com/VivekTailor19/animation_galaxy_bmi/assets/119835214/bca69d89-675b-4fe5-98c0-ecba3833b6a3" height = "50%" width = "30%">
-
 
 </p>
