@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 class Galaxy_SplashScreen extends StatefulWidget {
   const Galaxy_SplashScreen({super.key});
@@ -17,7 +18,9 @@ class _Galaxy_SplashScreenState extends State<Galaxy_SplashScreen> {
 
     return SafeArea(
       child: Scaffold(
-        body: Center(child: Container(height: 80,width: 80,color: Colors.indigoAccent,)),
+        body: Container(height: 100.h,width: 100.w,
+          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/solar.jpg"),fit: BoxFit.fill)),
+        ),
       ),
     );
   }
